@@ -1,0 +1,187 @@
+[
+  {
+    "id": 1,
+    "providerName": "ChatGPT",
+    "isSupported": true,
+    "classifiers": [
+      {
+        "id": 101,
+        "name": "Sensitive Data Detection",
+        "severity": "high",
+        "description": "Identifies PII such as SSNs, phone numbers, and addresses."
+      },
+      {
+        "id": 102,
+        "name": "Toxic Language",
+        "severity": "medium",
+        "description": "Flags harmful or abusive language in content."
+      },
+      {
+        "id": 103,
+        "name": "Phishing Detection",
+        "severity": "critical",
+        "description": "Detects messages resembling known phishing patterns."
+      },
+      {
+        "id": 104,
+        "name": "Code Leak Detection",
+        "severity": "high",
+        "description": "Detects potential leaks of source code or secrets."
+      },
+      {
+        "id": 105,
+        "name": "Low-Value Content",
+        "severity": "low",
+        "description": "Flags spam or irrelevant messages."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "providerName": "Claude",
+    "isSupported": true,
+    "classifiers": [
+      {
+        "id": 201,
+        "name": "Document Leak Detection",
+        "severity": "critical",
+        "description": "Identifies internal document leaks in public channels."
+      },
+      {
+        "id": 202,
+        "name": "Misinformation",
+        "severity": "high",
+        "description": "Detects potentially false or misleading statements."
+      },
+      {
+        "id": 203,
+        "name": "Harassment Detection",
+        "severity": "medium",
+        "description": "Flags bullying or harassing language."
+      },
+      {
+        "id": 204,
+        "name": "Sensitive Keywords",
+        "severity": "low",
+        "description": "Matches content against a predefined keyword list."
+      },
+      {
+        "id": 205,
+        "name": "Data Anomaly Detection",
+        "severity": "medium",
+        "description": "Finds irregular data patterns in responses."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "providerName": "Gemini",
+    "isSupported": false,
+    "classifiers": [
+      {
+        "id": 301,
+        "name": "Fraud Pattern Detection",
+        "severity": "critical",
+        "description": "Detects transactions matching known fraud signatures."
+      },
+      {
+        "id": 302,
+        "name": "Content Policy Violation",
+        "severity": "high",
+        "description": "Flags violations of usage policies."
+      },
+      {
+        "id": 303,
+        "name": "Image Inappropriate Content",
+        "severity": "medium",
+        "description": "Detects NSFW or prohibited imagery."
+      },
+      {
+        "id": 304,
+        "name": "Data Integrity Check",
+        "severity": "low",
+        "description": "Validates data format and consistency."
+      },
+      {
+        "id": 305,
+        "name": "Suspicious IP Detection",
+        "severity": "medium",
+        "description": "Flags connections from known malicious IPs."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "providerName": "Perplexity",
+    "isSupported": true,
+    "classifiers": [
+      {
+        "id": 401,
+        "name": "Source Reliability",
+        "severity": "medium",
+        "description": "Assesses trustworthiness of referenced sources."
+      },
+      {
+        "id": 402,
+        "name": "High-Risk Content",
+        "severity": "critical",
+        "description": "Flags potentially dangerous or illegal content."
+      },
+      {
+        "id": 403,
+        "name": "Contextual Relevance",
+        "severity": "low",
+        "description": "Scores how relevant an answer is to the query."
+      },
+      {
+        "id": 404,
+        "name": "Hate Speech Detection",
+        "severity": "high",
+        "description": "Identifies discriminatory language."
+      },
+      {
+        "id": 405,
+        "name": "API Abuse Detection",
+        "severity": "medium",
+        "description": "Detects suspicious usage patterns in API calls."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "providerName": "DeepSeek",
+    "isSupported": false,
+    "classifiers": [
+      {
+        "id": 501,
+        "name": "Deepfake Detection",
+        "severity": "critical",
+        "description": "Identifies AI-generated or manipulated media."
+      },
+      {
+        "id": 502,
+        "name": "Insider Threat",
+        "severity": "high",
+        "description": "Detects behavior patterns consistent with insider risks."
+      },
+      {
+        "id": 503,
+        "name": "Spam Filtering",
+        "severity": "low",
+        "description": "Filters unsolicited or repetitive content."
+      },
+      {
+        "id": 504,
+        "name": "Data Classification",
+        "severity": "medium",
+        "description": "Labels sensitive data according to compliance rules."
+      },
+      {
+        "id": 505,
+        "name": "Harmful Prompt Detection",
+        "severity": "high",
+        "description": "Identifies prompt injection or malicious queries."
+      }
+    ]
+  }
+]
