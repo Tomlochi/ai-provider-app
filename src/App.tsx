@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useNavigate, useParams, Link } from 'react-router-dom'
 import Header from './components/Header'
+import Sidebar from './components/Sidebar'
 import ProviderList from './components/ProviderList'
 import ProviderDetail from './components/ProviderDetail'
 import { useDispatch, useSelector } from 'react-redux'
@@ -32,27 +33,23 @@ const Shell: React.FC = () => {
 
   return (
     <div className="w-full h-[calc(100vh-56px)] flex">
-      <div>
-      <h1>
-        Policies
-      </h1>
-        <div className="flex grow">
-          <div className="w-72 max-w-80 shrink-0">
-            <ProviderList />
-          </div>
-          <main className="grow bg-gray-50">
-            {selectedId ? (
-              <ProviderDetail id={selectedId} />
-            ) : (
-              <div className="h-full flex items-center justify-center text-gray-500">
-                <div className="text-center px-6">
-                  <h2 className="text-lg font-medium mb-2">Select a supported provider</h2>
-                  <p className="text-sm">Choose an item from the left list. Unsupported providers are disabled.</p>
-                </div>
-              </div>
-            )}
-          </main>
+      <Sidebar />
+      <div className="flex grow">
+        <div className="w-72 max-w-80 shrink-0">
+          <ProviderList />
         </div>
+        <main className="grow bg-gray-50">
+          {selectedId ? (
+            <ProviderDetail id={selectedId} />
+          ) : (
+            <div className="h-full flex items-center justify-center text-gray-500">
+              <div className="text-center px-6">
+                <h2 className="text-lg font-medium mb-2">Select a supported provider</h2>
+                <p className="text-sm">Choose an item from the left list. Unsupported providers are disabled.</p>
+              </div>
+            </div>
+          )}
+        </main>
       </div>
     </div>
   )
