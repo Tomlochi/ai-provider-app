@@ -6,6 +6,7 @@ import { useGetProvidersQuery } from '../services/providersApi'
 import { setSelectedProviderId } from '../store/slices/providerSlice'
 import RightPanel from '../components/RightPanel'
 import LeftPanel from '../components/LeftPanel'
+import { useTranslation } from 'react-i18next'
 
 
 const Policies: React.FC = () => {
@@ -14,6 +15,7 @@ const Policies: React.FC = () => {
     const navigate = useNavigate()
     const { id } = useParams()
     const { data: providers } = useGetProvidersQuery()
+    const { t } = useTranslation()
   
     useEffect(() => {
       if (!providers) return
@@ -32,7 +34,7 @@ const Policies: React.FC = () => {
     return (
         <div className="flex-1 flex flex-col">
             <div className="px-5 py-3 border-b">
-            <h1 className="text-xl font-semibold">Policies</h1>
+            <h1 className="text-xl font-semibold">{t('sidebar.policies')}</h1>
             </div>
             <div className="flex flex-1 min-h-0">
                 <RightPanel/>

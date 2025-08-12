@@ -1,12 +1,14 @@
 import React from "react";
+import { useTranslation } from 'react-i18next'
 
 const PageNotFound: React.FC = () => {
+  const { t } = useTranslation()
   return (
     <div className="p-6">
       <p>
-        Page not found.{" "}
+        {t('notFound.title')}{' '}
         <a href="/" className="text-blue-600 underline">
-          Go home
+          {t('notFound.goHome')}
         </a>
       </p>
     </div>

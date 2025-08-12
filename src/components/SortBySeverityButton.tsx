@@ -1,6 +1,7 @@
 import React from 'react'
 import { SortIcon } from '../assets/icons'
 import TooltipComponent from './TooltipComponent'
+import { useTranslation } from 'react-i18next'
 import { cn } from '../utils/tailwind-utils'
 
 interface SortBySeverityButtonProps {
@@ -8,8 +9,9 @@ interface SortBySeverityButtonProps {
   setIsSorted: (isSorted: boolean) => void
 }
 
-const SortBySeverityButton: React.FC<SortBySeverityButtonProps> = ({ isSorted, setIsSorted }) => {
-  return (
+ const SortBySeverityButton: React.FC<SortBySeverityButtonProps> = ({ isSorted, setIsSorted }) => {
+   const { t } = useTranslation()
+   return (
     <div className="relative group">
       <button
         type="button"
@@ -23,7 +25,7 @@ const SortBySeverityButton: React.FC<SortBySeverityButtonProps> = ({ isSorted, s
       >
         <SortIcon className="w-4 h-4" />
       </button>
-      <TooltipComponent text="sort by severity level"/>
+       <TooltipComponent text={t('common.sortBySeverityTooltip')}/>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import type { AppDispatch } from '../store'
 import type { RootState } from '../store'
 import type { Severity } from '../types/types'
 import { toggleSeverity } from '../store/slices/providerSlice'
+import { useTranslation } from 'react-i18next'
 import { FunnelIcon } from '../assets/icons'
 
 const enum DOM_EVENTS {
@@ -31,6 +32,7 @@ const MenuCheckbox: React.FC<{
 const SeverityFilterMenu: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
   const severityFilter = useSelector((state: RootState) => state.provider.severityFilter)
+  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -65,24 +67,24 @@ const SeverityFilterMenu: React.FC = () => {
         className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm text-indigo-700 hover:bg-indigo-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50"
         aria-haspopup="menu"
         aria-expanded={open}
-        aria-label="Filter"
+        aria-label={t('common.filter')}
       >
         <FunnelIcon className="w-4 h-4" />
-        <span>Filter</span>
+        <span>{t('common.filter')}</span>
       </button>
 
       {open && (
         <div
           role="menu"
-          aria-label="Severity filter"
+          aria-label={`${t('common.severity')} filter`}
           className="absolute right-0 mt-2 w-56 rounded-xl border border-gray-200 bg-white shadow-xl"
         >
-          <div className="px-3 pt-2 pb-1 text-xs font-medium text-gray-500">Severity</div>
+          <div className="px-3 pt-2 pb-1 text-xs font-medium text-gray-500">{t('common.severity')}</div>
           <div className="py-1">
-            <MenuCheckbox label="Critical" checked={severityFilter.Critical} onChange={() => toggle('Critical')} />
-            <MenuCheckbox label="High" checked={severityFilter.High} onChange={() => toggle('High')} />
-            <MenuCheckbox label="Medium" checked={severityFilter.Medium} onChange={() => toggle('Medium')} />
-            <MenuCheckbox label="Low" checked={severityFilter.Low} onChange={() => toggle('Low')} />
+            <MenuCheckbox label={t('common.critical') as any} checked={severityFilter.Critical} onChange={() => toggle('Critical')} />
+            <MenuCheckbox label={t('common.high') as any} checked={severityFilter.High} onChange={() => toggle('High')} />
+            <MenuCheckbox label={t('common.medium') as any} checked={severityFilter.Medium} onChange={() => toggle('Medium')} />
+            <MenuCheckbox label={t('common.low') as any} checked={severityFilter.Low} onChange={() => toggle('Low')} />
           </div>
         </div>
       )}
