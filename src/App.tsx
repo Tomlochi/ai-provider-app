@@ -38,7 +38,7 @@ const Shell: React.FC = () => {
         <div className="w-72 max-w-80 shrink-0">
           <ProviderList />
         </div>
-        <main className="grow bg-gray-50">
+        <div className="grow bg-gray-50">
           {selectedId ? (
             <ProviderDetail id={selectedId} />
           ) : (
@@ -49,7 +49,7 @@ const Shell: React.FC = () => {
               </div>
             </div>
           )}
-        </main>
+        </div>
       </div>
     </div>
   )

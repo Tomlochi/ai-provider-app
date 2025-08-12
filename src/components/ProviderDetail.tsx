@@ -24,22 +24,18 @@ const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
 
   return (
     <section className="flex flex-col h-full" aria-labelledby="provider-title">
-      {/*<ControlsBar />*/}
       <div className="p-4 overflow-y-auto grow">
         <div className="mb-4">
-          <h2 id="provider-title" className="text-lg font-semibold flex items-center gap-2">
-            {data.providerName}
-            <span className="text-xs px-2 py-0.5 rounded border bg-emerald-50 text-emerald-700 border-emerald-200">Supported</span>
-          </h2>
-          <p className="text-sm text-gray-600">{sorted.length} classifier(s) shown</p>
+          <p className="text-sm text-gray-600">Classifiers ({sorted.length})</p>
         </div>
-
-        <ul role="list" className="grid sm:grid-cols-2 gap-3">
+        <ul role="list" className="space-y-3">
           {sorted.map((c) => (
-            <li key={c.id} role="listitem" className="rounded-xl border p-3 bg-white">
+            <li key={c.id} role="listitem" className="shadow-lg rounded-xl border p-3 bg-white">
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <h3 className="font-medium">{c.name}</h3>
+                  <h4 className="text-xs font-semibold text-gray-500">Classifier name:</h4>
+                  <p className="text-sm text-gray-600 leading-snug mt-1">{c.name}</p>
+                  <h4 className="mt-4 text-xs font-semibold text-gray-500">Description:</h4>
                   <p className="text-sm text-gray-600 leading-snug mt-1">{c.description}</p>
                 </div>
                 <span className={`text-xs px-2 py-0.5 rounded ${severityBadgeClasses(c.severity)}`}>{c.severity}</span>

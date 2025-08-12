@@ -1,4 +1,3 @@
-
 import React from 'react'
 import { useGetProvidersQuery } from '../services/providersApi'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,16 +6,17 @@ import type { AppDispatch } from '../store'
 import { setSelectedProviderId } from '../features/ui/uiSlice'
 import { useNavigate } from 'react-router-dom'
 import type { ProviderModel } from '../types'
+import { ProviderIcon, providerAccent } from './ProviderIcon'
 
 const ProviderList: React.FC = () => {
-  const { data, isLoading, error } = useGetProvidersQuery()
+  const { data : Providers, isLoading, error } = useGetProvidersQuery()
   const selectedId = useSelector((s: RootState) => s.ui.selectedProviderId)
   const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
 
   if (isLoading) return <div className="p-4">Loading providers…</div>
   if (error) return <div className="p-4 text-red-700">Failed to load providers.</div>
-  if (!data) return null
+  if (!Providers) return null
 
   const onSelect = (p: ProviderModel) => {
     if (!p.isSupported) return
@@ -25,39 +25,44 @@ const ProviderList: React.FC = () => {
   }
 
   return (
-    <section aria-label="Providers" className="border-r bg-white h-full overflow-y-auto">
-      <ul role="list" className="divide-y">
-        {data.map((p) => {
-          const isSelected = selectedId === p.id
-          const disabled = !p.isSupported
+    <div aria-label="Providers" className="h-full p-4 overflow-y-auto">
+      <p className="mb-3 text-sm text-gray-600">Providers</p>
+      <ul role="list" className="space-y-2">
+        {Providers.map((provider) => {
+          const isSelected = selectedId === provider.id
+            const disabled = !provider.isSupported
+            const count = provider.classifiers.length
           return (
-            <li key={p.id} role="listitem">
+            <li key={provider.id} role="listitem">
               <button
                 type="button"
-                onClick={() => onSelect(p)}
+                onClick={() => onSelect(provider)}
                 disabled={disabled}
                 aria-disabled={disabled}
                 aria-selected={isSelected}
-                className={`w-full text-left px-4 py-3 focus:outline-none focus:ring flex items-center justify-between ${
-                  disabled ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-50 cursor-pointer'
-                } ${isSelected ? 'bg-gray-100' : ''}`}
-              >
-                <span className="font-medium">{p.providerName}</span>
-                <span
-                  className={`text-xs px-2 py-0.5 rounded border ${
-                    p.isSupported
-                      ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
-                      : 'bg-gray-100 text-gray-500 border-gray-200'
+                className={`w-full flex items-center justify-between shadow-xl gap-4 rounded-xl border px-4 py-3 text-left transition-all
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40
+                  ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}
+                  ${isSelected
+                    ? 'border-indigo-500 ring-1 ring-indigo-500/40 bg-white shadow-sm'
+                    : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50'
                   }`}
-                >
-                  {p.isSupported ? 'Supported' : 'Unsupported'}
+              >
+                <span className="flex items-center gap-3 min-w-0">
+                  <span className={`flex h-8 w-8 items-center justify-center rounded-md text-base ${providerAccent(provider.providerName)}`}>
+                    <ProviderIcon name={provider.providerName}/>
+                  </span>
+                  <span className="text-sm">{provider.providerName}</span>
+                </span>
+                <span className="text-[11px] text-gray-500 shrink-0">
+                  {count} Classifier{count === 1 ? '' : 's'}
                 </span>
               </button>
             </li>
           )
         })}
       </ul>
-    </section>
+    </div>
   )
 }
 

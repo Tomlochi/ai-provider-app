@@ -70,6 +70,12 @@
         "name": "Data Anomaly Detection",
         "severity": "medium",
         "description": "Finds irregular data patterns in responses."
+      },
+      {
+        "id": 206,
+        "name": "Prompt Injection Detection",
+        "severity": "high",
+        "description": "Detects attempts to override system instructions or jailbreak models."
       }
     ]
   },
@@ -101,12 +107,6 @@
         "name": "Data Integrity Check",
         "severity": "low",
         "description": "Validates data format and consistency."
-      },
-      {
-        "id": 305,
-        "name": "Suspicious IP Detection",
-        "severity": "medium",
-        "description": "Flags connections from known malicious IPs."
       }
     ]
   },
@@ -132,18 +132,6 @@
         "name": "Contextual Relevance",
         "severity": "low",
         "description": "Scores how relevant an answer is to the query."
-      },
-      {
-        "id": 404,
-        "name": "Hate Speech Detection",
-        "severity": "high",
-        "description": "Identifies discriminatory language."
-      },
-      {
-        "id": 405,
-        "name": "API Abuse Detection",
-        "severity": "medium",
-        "description": "Detects suspicious usage patterns in API calls."
       }
     ]
   },
