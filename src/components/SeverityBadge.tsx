@@ -1,5 +1,6 @@
 import React from 'react'
 import type { Severity } from '../types/types'
+import { CriticalIcon } from '../assets/icons'
 
 function classNames(...classes: Array<string | undefined | false>): string {
   return classes.filter(Boolean).join(' ')
@@ -23,21 +24,9 @@ const containerBySeverity: Record<Severity, string> = {
   Low: lowContainer,
 }
 
-const CriticalIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg
-    viewBox="0 0 20 20"
-    fill="currentColor"
-    aria-hidden="true"
-    className={className}
-  >
-    <path d="M10.88 2.828a2 2 0 0 0-3.76 0L1.4 15.2A2 2 0 0 0 3.24 18h13.52a2 2 0 0 0 1.84-2.8L10.88 2.828zM10 6.5c.414 0 .75.336.75.75v4.5a.75.75 0 0 1-1.5 0v-4.5c0-.414.336-.75.75-.75zm0 7.75a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
-  </svg>
-)
-
 export const SeverityBadge: React.FC<{
   severity: Severity
-  className?: string
-}> = ({ severity, className }) => {
+}> = ({ severity }) => {
   const isCritical = severity === 'Critical'
   const container = containerBySeverity[severity]
 
@@ -46,7 +35,6 @@ export const SeverityBadge: React.FC<{
       className={classNames(
         'inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium',
         container,
-        className,
       )}
     >
       {isCritical ? (

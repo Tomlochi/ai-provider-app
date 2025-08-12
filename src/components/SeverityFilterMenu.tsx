@@ -3,13 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch } from '../store'
 import type { RootState } from '../store'
 import type { Severity } from '../types/types'
-import { toggleSeverity } from '../features/ui/uiSlice'
-
-const FunnelIcon: React.FC<{ className?: string }> = ({ className }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className={className} aria-hidden="true">
-    <path d="M3 5h18l-7 8v5l-4 2v-7L3 5z" strokeWidth="1.5" strokeLinejoin="round" />
-  </svg>
-)
+import { toggleSeverity } from '../services/providerSlice'
+import { FunnelIcon } from '../assets/icons'
 
 const MenuCheckbox: React.FC<{
   label: Severity
@@ -24,16 +19,15 @@ const MenuCheckbox: React.FC<{
       onChange={onChange}
       aria-label={label}
     />
-    <span className="">{label}</span>
+    <span className="text-sm">{label}</span>
   </label>
 )
 
 const SeverityFilterMenu: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
-  const severityFilter = useSelector((s: RootState) => s.ui.severityFilter)
+  const severityFilter = useSelector((state: RootState) => state.provider.severityFilter)
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  const firstFocusableRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!open) return
@@ -55,19 +49,13 @@ const SeverityFilterMenu: React.FC = () => {
     }
   }, [open])
 
-  useEffect(() => {
-    if (open && firstFocusableRef.current) {
-      firstFocusableRef.current.focus()
-    }
-  }, [open])
-
-  const toggle = (sev: Severity) => dispatch(toggleSeverity(sev))
+  const toggle = (severity: Severity) => dispatch(toggleSeverity(severity))
 
   return (
     <div className="relative" ref={containerRef}>
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen((isOpen) => !isOpen)}
         className="inline-flex items-center gap-1.5 rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm text-indigo-700 hover:bg-indigo-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/50"
         aria-haspopup="menu"
         aria-expanded={open}
@@ -85,17 +73,7 @@ const SeverityFilterMenu: React.FC = () => {
         >
           <div className="px-3 pt-2 pb-1 text-xs font-medium text-gray-500">Severity</div>
           <div className="py-1">
-            <label className="flex items-center gap-2 px-2 py-1.5 cursor-pointer select-none">
-              <input
-                ref={firstFocusableRef}
-                type="checkbox"
-                className="accent-indigo-600 w-4 h-4"
-                checked={severityFilter.Critical}
-                onChange={() => toggle('Critical')}
-                aria-label="Critical"
-              />
-              <span className="text-sm text-gray-800">Critical</span>
-            </label>
+            <MenuCheckbox label="Critical" checked={severityFilter.Critical} onChange={() => toggle('Critical')} />
             <MenuCheckbox label="High" checked={severityFilter.High} onChange={() => toggle('High')} />
             <MenuCheckbox label="Medium" checked={severityFilter.Medium} onChange={() => toggle('Medium')} />
             <MenuCheckbox label="Low" checked={severityFilter.Low} onChange={() => toggle('Low')} />

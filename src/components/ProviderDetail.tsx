@@ -10,25 +10,24 @@ import SortBySeverityButton from './SortBySeverityButton'
 import SeverityFilterMenu from './SeverityFilterMenu'
 
 const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
-  const { data, isLoading, error } = useGetProviderByIdQuery(id)
-  const { severityFilter, sortKey } = useSelector((s: RootState) => s.ui)
-
+  const { data: provider } = useGetProviderByIdQuery(id)
+  const { severityFilter, isSorted } = useSelector((state: RootState) => state.provider)
+  
   const visibleSeverities = useMemo(() => {
-    return new Set<Severity>(Object.entries(severityFilter).filter(([, v]) => v).map(([k]) => k as Severity))
+    const enabledSeverities = (Object.keys(severityFilter) as Severity[]).filter(
+      (severity) => severityFilter[severity]
+    )
+    return new Set<Severity>(enabledSeverities)
   }, [severityFilter])
 
-  if (isLoading) return <div className="p-4">Loading provider…</div>
-  if (error || !data) return <div className="p-4 text-red-700">Provider not found.</div>
-  if (!data.isSupported) return <div className="p-4 text-gray-600">This provider is not supported and has no details.</div>
-
-  const filtered = data.classifiers.filter((c) => visibleSeverities.has(c.severity))
-  const sorted = sortClassifiers(filtered, sortKey)
+  const severity = provider?.classifiers.filter((classifier) => visibleSeverities.has(classifier.severity)) || []
+  const classifiers = sortClassifiers(severity, isSorted)
 
   return (
-    <section className="flex flex-col h-full" aria-labelledby="provider-title">
+    <div className="flex flex-col h-full" aria-labelledby="provider-title">
       <div className="p-4 overflow-y-auto grow">
         <div className="flex justify-between mb-4">
-          <p className="flex items-center text-sm text-gray-600">Classifiers ({sorted.length})</p>
+          <p className="flex items-center text-sm text-gray-600">Classifiers ({classifiers.length})</p>
            <div className="flex justify-end items-center gap-3 px-3 py-2">
                 <div className="flex items-center gap-3" role="group" aria-label="Filters and sorting">
                   <SortBySeverityButton />
@@ -37,22 +36,22 @@ const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
               </div>
         </div>
         <ul role="list" className="space-y-3">
-          {sorted.map((c) => (
-            <li key={c.id} role="listitem" className="shadow-lg rounded-xl border p-3 bg-white">
+          {classifiers.map((classifier) => (
+            <li key={classifier.id} role="listitem" className="shadow-lg rounded-xl border p-3 bg-white">
               <div className="flex items-start justify-between gap-2">
                 <div>
                   <h4 className="text-xs font-semibold text-gray-500">Classifier name:</h4>
-                  <p className="text-sm text-gray-600 leading-snug mt-1">{c.name}</p>
+                  <p className="text-sm text-gray-600 leading-snug mt-1">{classifier.name}</p>
                   <h4 className="mt-4 text-xs font-semibold text-gray-500">Description:</h4>
-                  <p className="text-sm text-gray-600 leading-snug mt-1">{c.description}</p>
+                  <p className="text-sm text-gray-600 leading-snug mt-1">{classifier.description}</p>
                 </div>
-                <SeverityBadge severity={c.severity} />
+                <SeverityBadge severity={classifier.severity} />
               </div>
             </li>
           ))}
         </ul>
       </div>
-    </section>
+    </div>
   )
 }
 

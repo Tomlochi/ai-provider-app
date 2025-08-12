@@ -3,14 +3,14 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from '../store'
 import { useGetProvidersQuery } from '../services/providersApi'
-import { setSelectedProviderId } from '../features/ui/uiSlice'
+import { setSelectedProviderId } from '../services/providerSlice'
 import RightPanel from '../components/RightPanel'
 import LeftPanel from '../components/LeftPanel'
 
 
 const Policies: React.FC = () => {
     const dispatch = useDispatch<AppDispatch>()
-    const selectedId = useSelector((state: RootState) => state.ui.selectedProviderId)
+    const selectedId = useSelector((state: RootState) => state.provider.selectedProviderId)
     const navigate = useNavigate()
     const { id } = useParams()
     const { data: providers } = useGetProvidersQuery()
@@ -18,10 +18,10 @@ const Policies: React.FC = () => {
     useEffect(() => {
       if (!providers) return
       if (id) {
-        const pid = Number(id)
-        const found = providers.find((p) => p.id === pid && p.isSupported)
-        if (found) {
-          dispatch(setSelectedProviderId(found.id))
+        const providerId = Number(id)
+        const provider = providers.find((provider) => provider.id === providerId && provider.isSupported)
+        if (provider) {
+          dispatch(setSelectedProviderId(provider.id))
           return
         }
         dispatch(setSelectedProviderId(null))

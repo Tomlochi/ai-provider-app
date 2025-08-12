@@ -1,12 +1,12 @@
 
 import React from 'react'
-import Lasso from '../assets/logos/Lasso'
+import Lasso from '../assets/logos/Lasso.svg?react'
 
 const Header: React.FC = () => (
   <header className="w-full border-b bg-white sticky top-0 z-10">
     <div className="px-4 py-3 flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <Lasso color="#f9bf1d"/>
+      <Lasso className="h-6 w-auto text-gray-500" /> 
       </div>
       <div className="flex items-center gap-3" aria-label="User section">
         <span className="inline-flex items-center gap-2 text-sm text-gray-700">
