@@ -7,31 +7,31 @@
       {
         "id": 101,
         "name": "Sensitive Data Detection",
-        "severity": "high",
+        "severity": "High",
         "description": "Identifies PII such as SSNs, phone numbers, and addresses."
       },
       {
         "id": 102,
         "name": "Toxic Language",
-        "severity": "medium",
+        "severity": "Medium",
         "description": "Flags harmful or abusive language in content."
       },
       {
         "id": 103,
         "name": "Phishing Detection",
-        "severity": "critical",
+        "severity": "Critical",
         "description": "Detects messages resembling known phishing patterns."
       },
       {
         "id": 104,
         "name": "Code Leak Detection",
-        "severity": "high",
+        "severity": "High",
         "description": "Detects potential leaks of source code or secrets."
       },
       {
         "id": 105,
         "name": "Low-Value Content",
-        "severity": "low",
+        "severity": "Low",
         "description": "Flags spam or irrelevant messages."
       }
     ]
@@ -44,37 +44,37 @@
       {
         "id": 201,
         "name": "Document Leak Detection",
-        "severity": "critical",
+        "severity": "Critical",
         "description": "Identifies internal document leaks in public channels."
       },
       {
         "id": 202,
         "name": "Misinformation",
-        "severity": "high",
+        "severity": "High",
         "description": "Detects potentially false or misleading statements."
       },
       {
         "id": 203,
         "name": "Harassment Detection",
-        "severity": "medium",
+        "severity": "Medium",
         "description": "Flags bullying or harassing language."
       },
       {
         "id": 204,
         "name": "Sensitive Keywords",
-        "severity": "low",
+        "severity": "Low",
         "description": "Matches content against a predefined keyword list."
       },
       {
         "id": 205,
         "name": "Data Anomaly Detection",
-        "severity": "medium",
+        "severity": "Medium",
         "description": "Finds irregular data patterns in responses."
       },
       {
         "id": 206,
         "name": "Prompt Injection Detection",
-        "severity": "high",
+        "severity": "High",
         "description": "Detects attempts to override system instructions or jailbreak models."
       }
     ]
@@ -87,25 +87,25 @@
       {
         "id": 301,
         "name": "Fraud Pattern Detection",
-        "severity": "critical",
+        "severity": "Critical",
         "description": "Detects transactions matching known fraud signatures."
       },
       {
         "id": 302,
         "name": "Content Policy Violation",
-        "severity": "high",
+        "severity": "High",
         "description": "Flags violations of usage policies."
       },
       {
         "id": 303,
         "name": "Image Inappropriate Content",
-        "severity": "medium",
+        "severity": "Medium",
         "description": "Detects NSFW or prohibited imagery."
       },
       {
         "id": 304,
         "name": "Data Integrity Check",
-        "severity": "low",
+        "severity": "Low",
         "description": "Validates data format and consistency."
       }
     ]
@@ -118,19 +118,19 @@
       {
         "id": 401,
         "name": "Source Reliability",
-        "severity": "medium",
+        "severity": "Medium",
         "description": "Assesses trustworthiness of referenced sources."
       },
       {
         "id": 402,
         "name": "High-Risk Content",
-        "severity": "critical",
+        "severity": "Critical",
         "description": "Flags potentially dangerous or illegal content."
       },
       {
         "id": 403,
         "name": "Contextual Relevance",
-        "severity": "low",
+        "severity": "Low",
         "description": "Scores how relevant an answer is to the query."
       }
     ]
@@ -143,31 +143,31 @@
       {
         "id": 501,
         "name": "Deepfake Detection",
-        "severity": "critical",
+        "severity": "Critical",
         "description": "Identifies AI-generated or manipulated media."
       },
       {
         "id": 502,
         "name": "Insider Threat",
-        "severity": "high",
+        "severity": "High",
         "description": "Detects behavior patterns consistent with insider risks."
       },
       {
         "id": 503,
         "name": "Spam Filtering",
-        "severity": "low",
+        "severity": "Low",
         "description": "Filters unsolicited or repetitive content."
       },
       {
         "id": 504,
         "name": "Data Classification",
-        "severity": "medium",
+        "severity": "Medium",
         "description": "Labels sensitive data according to compliance rules."
       },
       {
         "id": 505,
         "name": "Harmful Prompt Detection",
-        "severity": "high",
+        "severity": "High",
         "description": "Identifies prompt injection or malicious queries."
       }
     ]
