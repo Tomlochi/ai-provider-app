@@ -21,9 +21,10 @@ export function severityBadgeClasses(s: Severity): string {
   }
 }
 
-export type SortKey = 'severity' | 'name'
+export type SortKey = 'none' | 'severity' | 'name'
 
 export function sortClassifiers(list: Classifier[], sortKey: SortKey) {
+  if (sortKey === 'none') return list
   if (sortKey === 'name') return [...list].sort((a, b) => a.name.localeCompare(b.name))
   return [...list].sort((a, b) => severityRank[a.severity] - severityRank[b.severity])
 }

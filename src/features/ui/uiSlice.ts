@@ -14,7 +14,7 @@ interface UIState {
 const initialState: UIState = {
   selectedProviderId: null,
   severityFilter: { Critical: true, High: true, Medium: true, Low: true },
-  sortKey: 'severity'
+  sortKey: 'none'
 }
 
 const uiSlice = createSlice({
@@ -29,10 +29,10 @@ const uiSlice = createSlice({
       state.severityFilter[k] = !state.severityFilter[k]
     },
     selectAllSeverities(state) {
-      state.severityFilter = { critical: true, high: true, medium: true, low: true }
+      state.severityFilter = { Critical: true, High: true, Medium: true, Low: true }
     },
     clearAllSeverities(state) {
-      state.severityFilter = { critical: false, high: false, medium: false, low: false }
+      state.severityFilter = { Critical: false, High: false, Medium: false, Low: false }
     },
     setSortKey(state, action: PayloadAction<SortKey>) {
       state.sortKey = action.payload

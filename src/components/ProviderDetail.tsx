@@ -3,9 +3,11 @@ import React, { useMemo } from 'react'
 import { useGetProviderByIdQuery } from '../services/providersApi'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../store'
-import ControlsBar from './ControlsBar'
-import { sortClassifiers, severityBadgeClasses } from '../utils/severity'
+import { sortClassifiers } from '../utils/severity'
 import type { Severity } from '../types/types'
+import SeverityBadge from './SeverityBadge'
+import SortBySeverityButton from './SortBySeverityButton'
+import SeverityFilterMenu from './SeverityFilterMenu'
 
 const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
   const { data, isLoading, error } = useGetProviderByIdQuery(id)
@@ -25,9 +27,14 @@ const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
   return (
     <section className="flex flex-col h-full" aria-labelledby="provider-title">
       <div className="p-4 overflow-y-auto grow">
-        <div className="mb-4">
-          <p className="text-sm text-gray-600">Classifiers ({sorted.length})</p>
-          <ControlsBar/>
+        <div className="flex justify-between mb-4">
+          <p className="flex items-center text-sm text-gray-600">Classifiers ({sorted.length})</p>
+           <div className="flex justify-end items-center gap-3 px-3 py-2">
+                <div className="flex items-center gap-3" role="group" aria-label="Filters and sorting">
+                  <SortBySeverityButton />
+                  <SeverityFilterMenu />
+                </div>
+              </div>
         </div>
         <ul role="list" className="space-y-3">
           {sorted.map((c) => (
@@ -39,10 +46,7 @@ const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
                   <h4 className="mt-4 text-xs font-semibold text-gray-500">Description:</h4>
                   <p className="text-sm text-gray-600 leading-snug mt-1">{c.description}</p>
                 </div>
-                <span className={`text-xs px-2 py-0.5 rounded ${severityBadgeClasses(c.severity)}`}>
-                  {c.severity === 'Critical' ? '! ' : '• '}
-                  {c.severity}
-                </span>
+                <SeverityBadge severity={c.severity} />
               </div>
             </li>
           ))}
