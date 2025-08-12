@@ -1,12 +1,12 @@
 
 import React from 'react'
+import Lasso from '../assets/logos/Lasso'
 
 const Header: React.FC = () => (
   <header className="w-full border-b bg-white sticky top-0 z-10">
     <div className="px-4 py-3 flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <span className="text-yellow-500 text-2xl">🤠</span>
-        <h1 className="text-xl font-semibold tracking-wide">LASSO</h1>
+        <Lasso color="#f9bf1d"/>
       </div>
       <div className="flex items-center gap-3" aria-label="User section">
         <span className="inline-flex items-center gap-2 text-sm text-gray-700">
