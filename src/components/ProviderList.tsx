@@ -5,8 +5,8 @@ import type { RootState } from '../store'
 import type { AppDispatch } from '../store'
 import { setSelectedProviderId } from '../features/ui/uiSlice'
 import { useNavigate } from 'react-router-dom'
-import type { ProviderModel } from '../types'
-import { ProviderIcon, providerAccent } from './ProviderIcon'
+import type { ProviderModel } from '../types/types'
+import { ProviderIcon } from './ProviderIcon'
 
 const ProviderList: React.FC = () => {
   const { data : Providers, isLoading, error } = useGetProvidersQuery()
@@ -49,10 +49,10 @@ const ProviderList: React.FC = () => {
                   }`}
               >
                 <span className="flex items-center gap-3 min-w-0">
-                  <span className={`flex h-8 w-8 items-center justify-center rounded-md text-base ${providerAccent(provider.providerName)}`}>
-                    <ProviderIcon name={provider.providerName}/>
-                  </span>
-                  <span className="text-sm">{provider.providerName}</span>
+                <span className={`w-8 h-8 rounded-full grid place-items-center`}>
+                  <ProviderIcon name={provider.providerName} className="h-5 w-5 text-gray-700" />
+                </span>
+                  <span className="text-base">{provider.providerName}</span>
                 </span>
                 <span className="text-[11px] text-gray-500 shrink-0">
                   {count} Classifier{count === 1 ? '' : 's'}

@@ -1,6 +1,6 @@
 
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { Severity } from '../../types'
+import type { Severity } from '../../types/types'
 import type { SortKey } from '../../utils/severity'
 
 type SeverityFilter = Record<Severity, boolean>
@@ -13,7 +13,7 @@ interface UIState {
 
 const initialState: UIState = {
   selectedProviderId: null,
-  severityFilter: { critical: true, high: true, medium: true, low: true },
+  severityFilter: { Critical: true, High: true, Medium: true, Low: true },
   sortKey: 'severity'
 }
 

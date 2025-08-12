@@ -3,9 +3,9 @@ import React, { useMemo } from 'react'
 import { useGetProviderByIdQuery } from '../services/providersApi'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../store'
-//import ControlsBar from './ControlsBar'
+import ControlsBar from './ControlsBar'
 import { sortClassifiers, severityBadgeClasses } from '../utils/severity'
-import type { Severity } from '../types'
+import type { Severity } from '../types/types'
 
 const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
   const { data, isLoading, error } = useGetProviderByIdQuery(id)
@@ -27,6 +27,7 @@ const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
       <div className="p-4 overflow-y-auto grow">
         <div className="mb-4">
           <p className="text-sm text-gray-600">Classifiers ({sorted.length})</p>
+          <ControlsBar/>
         </div>
         <ul role="list" className="space-y-3">
           {sorted.map((c) => (
@@ -38,7 +39,10 @@ const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
                   <h4 className="mt-4 text-xs font-semibold text-gray-500">Description:</h4>
                   <p className="text-sm text-gray-600 leading-snug mt-1">{c.description}</p>
                 </div>
-                <span className={`text-xs px-2 py-0.5 rounded ${severityBadgeClasses(c.severity)}`}>{c.severity}</span>
+                <span className={`text-xs px-2 py-0.5 rounded ${severityBadgeClasses(c.severity)}`}>
+                  {c.severity === 'Critical' ? '! ' : '• '}
+                  {c.severity}
+                </span>
               </div>
             </li>
           ))}

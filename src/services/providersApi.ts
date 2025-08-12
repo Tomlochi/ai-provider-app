@@ -1,6 +1,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { ProviderModel } from '../types'
+import type { ProviderModel } from '../types/types'
 
 export const providersApi = createApi({
   reducerPath: 'providersApi',

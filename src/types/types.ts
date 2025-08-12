@@ -1,5 +1,5 @@
 
-export type Severity = 'critical' | 'high' | 'medium' | 'low'
+export type Severity = 'Critical' | 'High' | 'Medium' | 'Low'
 
 export interface Classifier {
   id: number
