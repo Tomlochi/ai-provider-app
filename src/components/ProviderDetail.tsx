@@ -18,6 +18,7 @@ const ProviderDetail: React.FC<ProviderDetailProps> = ({ id }) => {
   const { data: provider } = useGetProviderByIdQuery(id)
   const { severityFilter } = useSelector((state: RootState) => state.provider)
   const [isSorted, setIsSorted] = useState(false);
+  const { t } = useTranslation()
 
   const visibleSeverities = useMemo(() => {
     const enabledSeverities = (Object.keys(severityFilter) as Severity[]).filter(
@@ -25,10 +26,9 @@ const ProviderDetail: React.FC<ProviderDetailProps> = ({ id }) => {
     )
     return new Set<Severity>(enabledSeverities)
   }, [severityFilter])
-
+  
   const severity = provider?.classifiers.filter((classifier) => visibleSeverities.has(classifier.severity)) || []
-  const classifiers = sortClassifiers(severity, isSorted)
-  const { t } = useTranslation()
+  const classifiers = useMemo(() => sortClassifiers(severity, isSorted), [severity, isSorted])
 
   return (
     <div className="flex flex-col h-full" aria-labelledby="provider-title">

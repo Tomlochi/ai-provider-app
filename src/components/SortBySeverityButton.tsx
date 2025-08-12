@@ -25,7 +25,9 @@ interface SortBySeverityButtonProps {
       >
         <SortIcon className="w-4 h-4" />
       </button>
-       <TooltipComponent text={t('common.sortBySeverityTooltip')}/>
+       <div className="group-focus-within:opacity-100 z-50">
+         <TooltipComponent text={t('common.sortBySeverityTooltip')}/>
+       </div>
     </div>
   )
 }

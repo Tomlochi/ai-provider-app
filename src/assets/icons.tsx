@@ -31,6 +31,7 @@ export const GridIcon: React.FC<{ className?: string }> = ({ className }) => (
         strokeWidth="1.5"
         strokeLinejoin="round"
       />
+      <text x="12" y="16" textAnchor="middle" className="text-xs font-bold" fill="currentColor">!</text>
     </svg>
   );
   

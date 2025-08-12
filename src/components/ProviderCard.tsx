@@ -44,7 +44,7 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
           <span className="w-8 h-8 rounded-full grid place-items-center">
             <ProviderIcon name={provider.providerName} />
           </span>
-          <span className="truncate text-base">{provider.providerName}</span>
+          <span className="truncate text-base" title={provider.providerName}>{provider.providerName}</span>
         </span>
         <span className="shrink-0 text-[11px] text-gray-500">
           {count} Classifier{count === 1 ? "" : "s"}

@@ -16,7 +16,7 @@ const ProviderList: React.FC = () => {
       <p className="mb-3 text-sm text-gray-600">{t('common.providers')}</p>
       <ul role="list" className="space-y-2">
         {providers.map((provider) => {
-          return <ProviderCard provider={provider}/>
+          return <ProviderCard key={provider.id} provider={provider}/>
         })}
       </ul>
     </div>
