@@ -6,6 +6,10 @@ import GeminiIcon from '../assets/logos/Gemini.svg?react'
 import DeepSeekIcon from '../assets/logos/DeepSeek.svg?react'
 import PerplexityIcon from '../assets/logos/Perplexity.svg?react'
 
+interface ProviderIconProps {
+  name: string;
+}
+
 const map: Record<string, FC<React.SVGProps<SVGSVGElement>>> = {
   'ChatGPT': ChatGPTIcon,
   'Claude': ClaudeIcon,
@@ -14,7 +18,9 @@ const map: Record<string, FC<React.SVGProps<SVGSVGElement>>> = {
   'Perplexity': PerplexityIcon,
 }
 
-export function ProviderIcon({ name, className }: { name: string; className?: string }) {
+const ProviderIcon: FC<ProviderIconProps> = ({ name }) => {
   const Icon = map[name]
-  return <Icon className={className} aria-hidden />
+  return <Icon className="h-5 w-5 text-gray-700" aria-hidden/>
 }
+
+export default ProviderIcon

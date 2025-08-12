@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import Lasso from '../assets/logos/Lasso.svg?react'
+import Lasso from '../assets/logos/Lasso'
 import { GridIcon, ShieldIcon, GearIcon } from '../assets/icons'
 
 const navItemBaseClasses =
@@ -36,7 +36,7 @@ const Sidebar: React.FC = () => (
     </ul>
 
     <div className="px-3 py-2 justify-between text-xs text-gray-500 flex items-center gap-2">
-      <Lasso width={80} height={30}/>
+      <Lasso fill="#b0a39e" width={80} height={30}/>
       <span>Version 1.1</span>
     </div>
   </nav>

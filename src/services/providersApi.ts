@@ -13,9 +13,9 @@ export const providersApi = createApi({
       async queryFn(id, _api, _extra, baseQuery) {
         const res = await baseQuery('mock_providers.json')
         if (res.error) return { error: res.error as any }
-        const list = (res.data as ProviderModel[]) ?? []
-        const found = list.find((p) => p.id === id) ?? null
-        return { data: found }
+        const providers = (res.data as ProviderModel[]) ?? []
+        const provider = providers.find((provider) => provider.id === id) ?? null
+        return { data: provider }
       }
     })
   })

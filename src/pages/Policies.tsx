@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch, RootState } from '../store'
 import { useGetProvidersQuery } from '../services/providersApi'
-import { setSelectedProviderId } from '../services/providerSlice'
+import { setSelectedProviderId } from '../store/slices/providerSlice'
 import RightPanel from '../components/RightPanel'
 import LeftPanel from '../components/LeftPanel'
 

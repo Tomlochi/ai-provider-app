@@ -1,5 +1,5 @@
 
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import { useGetProviderByIdQuery } from '../services/providersApi'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../store'
@@ -9,10 +9,15 @@ import SeverityBadge from './SeverityBadge'
 import SortBySeverityButton from './SortBySeverityButton'
 import SeverityFilterMenu from './SeverityFilterMenu'
 
-const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
+interface ProviderDetailProps {
+  id: number;
+}
+
+const ProviderDetail: React.FC<ProviderDetailProps> = ({ id }) => {
   const { data: provider } = useGetProviderByIdQuery(id)
-  const { severityFilter, isSorted } = useSelector((state: RootState) => state.provider)
-  
+  const { severityFilter } = useSelector((state: RootState) => state.provider)
+  const [isSorted, setIsSorted] = useState(false);
+
   const visibleSeverities = useMemo(() => {
     const enabledSeverities = (Object.keys(severityFilter) as Severity[]).filter(
       (severity) => severityFilter[severity]
@@ -30,7 +35,7 @@ const ProviderDetail: React.FC<{ id: number }> = ({ id }) => {
           <p className="flex items-center text-sm text-gray-600">Classifiers ({classifiers.length})</p>
            <div className="flex justify-end items-center gap-3 px-3 py-2">
                 <div className="flex items-center gap-3" role="group" aria-label="Filters and sorting">
-                  <SortBySeverityButton />
+                  <SortBySeverityButton isSorted={isSorted} setIsSorted={setIsSorted} />
                   <SeverityFilterMenu />
                 </div>
               </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import ProviderDetail from './ProviderDetail';
-
-export type LeftPanelProps = {
+interface LeftPanelProps {
     selectedId: number | null;
 };
 

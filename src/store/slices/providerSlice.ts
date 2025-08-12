@@ -1,6 +1,6 @@
 
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
-import type { Severity } from '../types/types'
+import type { Severity } from '../../types/types'
 
 type SeverityFilter = Record<Severity, boolean>
 
@@ -26,19 +26,10 @@ const providersSlice = createSlice({
     toggleSeverity(state, action: PayloadAction<Severity>) {
       const severity = action.payload
       state.severityFilter[severity] = !state.severityFilter[severity]
-    },
-    selectAllSeverities(state) {
-      state.severityFilter = { Critical: true, High: true, Medium: true, Low: true }
-    },
-    clearAllSeverities(state) {
-      state.severityFilter = { Critical: false, High: false, Medium: false, Low: false }
-    },
-    setIsSorted(state, action: PayloadAction<boolean>) {
-      state.isSorted = !action.payload
     }
   }
 })
 
-export const { setSelectedProviderId, toggleSeverity, selectAllSeverities, clearAllSeverities, setIsSorted } =
+export const { setSelectedProviderId, toggleSeverity } =
 providersSlice.actions
 export default providersSlice.reducer

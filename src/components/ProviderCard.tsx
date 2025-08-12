@@ -1,12 +1,12 @@
-import React, { useCallback, memo } from "react";
+import React, { useCallback } from "react";
 import type { ProviderModel } from "../types/types";
 import { useDispatch, useSelector } from "react-redux";
 import type { AppDispatch, RootState } from "../store";
-import { setSelectedProviderId } from "../services/providerSlice";
+import { setSelectedProviderId } from "../store/slices/providerSlice";
 import { useNavigate } from "react-router-dom";
-import { ProviderIcon } from "./ProviderIcon";
-
-export type ProviderCardProps = {
+import ProviderIcon from "./ProviderIcon";
+import { cn } from "../utils/tailwind-utils";
+interface ProviderCardProps {
   provider: ProviderModel;
 };
 
@@ -32,18 +32,17 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
         onClick={handleClick}
         disabled={disabled}
         aria-selected={isSelected}
-        className={[
-          "w-full flex items-center justify-between gap-4 rounded-xl border px-4 py-3 text-left transition-all",
-          "focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40",
+        className={cn(
+          "w-full flex items-center justify-between gap-4 rounded-xl border px-4 py-3 text-left transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40",
           disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer",
           isSelected
-            ? "border-indigo-500 ring-1 ring-indigo-500/40 bg-white shadow-sm"
-            : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 shadow-xl",
-        ].join(" ")}
+              ? "border-indigo-500 ring-1 ring-indigo-500/40 bg-white shadow-sm"
+              : "border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50 shadow-xl",
+        )}
       >
         <span className="flex items-center gap-3 min-w-0">
           <span className="w-8 h-8 rounded-full grid place-items-center">
-            <ProviderIcon name={provider.providerName} className="h-5 w-5 text-gray-700" />
+            <ProviderIcon name={provider.providerName} />
           </span>
           <span className="truncate text-base">{provider.providerName}</span>
         </span>
@@ -55,4 +54,4 @@ const ProviderCard: React.FC<ProviderCardProps> = ({ provider }) => {
   );
 };
 
-export default memo(ProviderCard);
+export default ProviderCard;

@@ -1,10 +1,7 @@
 import React from 'react'
 import type { Severity } from '../types/types'
 import { CriticalIcon } from '../assets/icons'
-
-function classNames(...classes: Array<string | undefined | false>): string {
-  return classes.filter(Boolean).join(' ')
-}
+import { cn } from '../utils/tailwind-utils'
 
 const criticalContainer = 'bg-red-800 text-white border border-red-900/60'
 const highContainer = 'bg-rose-100 text-rose-900 border border-rose-200'
@@ -32,7 +29,7 @@ export const SeverityBadge: React.FC<{
 
   return (
     <span
-      className={classNames(
+      className={cn(
         'inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium',
         container,
       )}
@@ -40,7 +37,7 @@ export const SeverityBadge: React.FC<{
       {isCritical ? (
         <CriticalIcon className="w-3.5 h-3.5" />
       ) : (
-        <span className={classNames('w-1.5 h-1.5 rounded-full', dotBySeverity[severity as Exclude<Severity, 'Critical'>])} />
+        <span className={cn('w-1.5 h-1.5 rounded-full', dotBySeverity[severity])} />
       )}
       <span>{severity}</span>
     </span>

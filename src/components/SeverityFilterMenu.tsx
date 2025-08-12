@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import type { AppDispatch } from '../store'
 import type { RootState } from '../store'
 import type { Severity } from '../types/types'
-import { toggleSeverity } from '../services/providerSlice'
+import { toggleSeverity } from '../store/slices/providerSlice'
 import { FunnelIcon } from '../assets/icons'
+
+const enum DOM_EVENTS {
+  KeyDown = 'keydown',
+  MouseDown = 'mousedown',
+}
 
 const MenuCheckbox: React.FC<{
   label: Severity
@@ -41,11 +46,12 @@ const SeverityFilterMenu: React.FC = () => {
         setOpen(false)
       }
     }
-    document.addEventListener('keydown', onKey)
-    document.addEventListener('mousedown', onClick)
+
+    document.addEventListener(DOM_EVENTS.KeyDown, onKey)
+    document.addEventListener(DOM_EVENTS.MouseDown, onClick)
     return () => {
-      document.removeEventListener('keydown', onKey)
-      document.removeEventListener('mousedown', onClick)
+      document.removeEventListener(DOM_EVENTS.KeyDown, onKey)
+      document.removeEventListener(DOM_EVENTS.MouseDown, onClick)
     }
   }, [open])
 
