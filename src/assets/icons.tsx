@@ -55,3 +55,9 @@ export const GridIcon: React.FC<{ className?: string }> = ({ className }) => (
       <path d="M16 7v12m0 0l2.5-2.5M16 19l-2.5-2.5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );
+
+  export const BurgerMenu: React.FC<{ className?: string }> = ({ className }) => (
+    <svg className={`h-6 w-6 text-gray-600 ${className}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  );

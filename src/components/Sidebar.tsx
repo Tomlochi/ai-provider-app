@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
   const { t } = useTranslation()
   return (
     <nav
-      className="hidden md:flex w-56 shrink-0 border-r bg-white h-full flex-col justify-between"
+      className="w-full h-full flex flex-col justify-between bg-white border border-gray-200"
       aria-label="Sidebar"
     >
       <ul className="p-3 space-y-1" role="list">

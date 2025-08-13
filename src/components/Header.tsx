@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   return (
     <header className="w-full border-b bg-white sticky top-0 z-10">
       <div className="px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-[3.4375rem] md:ml-0">
           <Lasso color="#f9bf1d"/>
         </div>
         <div className="flex items-center gap-3" aria-label="User section">
